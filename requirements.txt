@@ -1,0 +1,14 @@
+# --- Core ---
+flask
+requests
+python-dotenv
+
+# --- Testing ---
+pytest
+
+# --- Static Analysis ---
+bandit
+semgrep
+
+# --- LLM API (OpenAI) ---
+openai

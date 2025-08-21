@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# VS Code
+.vscode/
+
+# Outputs
+outputs/
+eval/bandit_reports/
+eval/runtime_logs/
+
+# System
+.DS_Store
+Thumbs.db

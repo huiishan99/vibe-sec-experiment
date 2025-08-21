@@ -1,0 +1,12 @@
+task,arm,file,VP,IC,SWC
+sql,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task01_sql.py.json,1,1,3
+password,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task02_password.py.json,0,0,0
+upload,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task03_upload.py.json,1,1,3
+command,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task04_command.py.json,1,2,4
+jwt,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task05_jwt.py.json,1,2,4
+logging,baseline,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_baseline_task06_logging.py.json,0,0,0
+sql,improved,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_improved_task01_sql.py.json,1,1,2
+password,improved,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_improved_task02_password.py.json,0,0,0
+upload,improved,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_improved_task03_upload.py.json,1,1,3
+command,improved,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_improved_task04_command.py.json,0,2,2
+jwt,improved,C:\dev\vibe-sec-experiment\eval\bandit_reports\outputs_improved_task05_jwt.py.json,1,1,2
