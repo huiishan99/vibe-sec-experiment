@@ -1,0 +1,80 @@
+{
+  "errors": [],
+  "generated_at": "2025-08-21T15:23:16Z",
+  "metrics": {
+    "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250821_2353\\improved\\task04_command_s303.py": {
+      "CONFIDENCE.HIGH": 2,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 2,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 68,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "_totals": {
+      "CONFIDENCE.HIGH": 2,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 2,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 68,
+      "nosec": 0,
+      "skipped_tests": 0
+    }
+  },
+  "results": [
+    {
+      "code": "15 \n16 import subprocess\n17 from typing import Iterable, List\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250821_2353\\improved\\task04_command_s303.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 16,
+      "line_range": [
+        16
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "73         text=True,          # decode bytes to str using locale encoding\n74         shell=False,        # do not invoke the shell\n75         check=True,         # raise CalledProcessError on non\u2011zero exit\n76     )\n77 \n78     return result.stdout\n79 \n80 # --------------------------------------------------------------------------- #\n81 # Example usage / simple tests\n",
+      "col_offset": 13,
+      "end_col_offset": 5,
+      "filename": "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250821_2353\\improved\\task04_command_s303.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 74,
+      "line_range": [
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    }
+  ]
+}
