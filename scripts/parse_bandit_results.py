@@ -1,4 +1,13 @@
-# scripts/parse_bandit_results.py
+"""
+Parse Bandit JSON reports, produce sample-level and aggregated CSVs.
+
+Input:
+  eval/bandit_reports/<RUN_ID>/*.json
+
+Output:
+  eval/bandit_samples_<RUN_ID>.csv
+  eval/bandit_aggregated_<RUN_ID>.csv
+"""
 import os, json, csv, re, glob, datetime
 from collections import defaultdict
 
@@ -11,13 +20,24 @@ OUT_AGG = os.path.join(ROOT, "eval", f"bandit_aggregated_{RUN_ID}.csv")
 SEV_W = {"LOW":1,"MEDIUM":2,"HIGH":3}
 
 def parse_filename(fp: str):
-    # e.g. eval/bandit_reports/RUNID/outputs_main..._baseline_task01_sql_s101.py.json
+    """
+    Supported patterns (json filename is based on scanned .py path):
+      outputs/<RUN_ID>/baseline/task01_sql_gemma3-27b-instruct_s101.py -> ..._baseline_task01_sql_gemma3-27b-instruct_s101.py.json
+      outputs/<RUN_ID>/improved/task01_sql_gpt-oss-20b_s101.py         -> ..._improved_task01_sql_gpt-oss-20b_s101.py.json
+    Fallback to older pattern without model name.
+    """
     base = os.path.basename(fp)
-    arm = "baseline" if "_baseline_" in base else "improved"
-    m_task = re.search(r"(task\d+_[a-z]+)_s(\d+)\.py\.json", base)
-    task = m_task.group(1) if m_task else "unknown"
-    seed = int(m_task.group(2)) if m_task else -1
-    return task, arm, seed
+    arm = "baseline" if "baseline" in base else "improved" if "improved" in base else "unknown"
+    m = re.search(r"(task\d+_[a-z0-9]+)_([a-z0-9\-]+)_s(\d+)\.py\.json", base)
+    if m:
+        task = m.group(1)
+        model = m.group(2).replace("-", ":")
+        seed = int(m.group(3))
+        return task, model, arm, seed
+    m2 = re.search(r"(task\d+_[a-z0-9]+)_s(\d+)\.py\.json", base)
+    task = m2.group(1) if m2 else "unknown"
+    seed = int(m2.group(2)) if m2 else -1
+    return task, "unknown", arm, seed
 
 def parse_json(fp: str):
     with open(fp, "r", encoding="utf-8") as f:
@@ -31,31 +51,32 @@ def parse_json(fp: str):
 def main():
     rows = []
     for fp in glob.glob(os.path.join(REPORT_DIR, "*.json")):
-        task, arm, seed = parse_filename(fp)
+        if os.path.basename(fp).startswith("_meta"):
+            continue
+        task, model, arm, seed = parse_filename(fp)
         ic, swc, vp = parse_json(fp)
-        rows.append({"RUN_ID":RUN_ID,"task":task,"arm":arm,"seed":seed,"IC":ic,"SWC":swc,"VP":vp,"file":fp})
+        rows.append({"RUN_ID":RUN_ID,"task":task,"model":model,"arm":arm,"seed":seed,"IC":ic,"SWC":swc,"VP":vp,"file":fp})
 
-    # 写样本级
     os.makedirs(os.path.join(ROOT, "eval"), exist_ok=True)
     with open(OUT_SAMPLES, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["RUN_ID","task","arm","seed","VP","IC","SWC","file"])
+        w = csv.DictWriter(f, fieldnames=["RUN_ID","task","model","arm","seed","VP","IC","SWC","file"])
         w.writeheader()
         for r in rows: w.writerow(r)
     print(f"[ok] samples -> {OUT_SAMPLES} ({len(rows)} rows)")
 
-    # 汇总
     g = defaultdict(list)
     for r in rows:
-        g[(r["task"], r["arm"])].append(r)
+        g[(r["task"], r["model"], r["arm"])].append(r)
+
     with open(OUT_AGG, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["RUN_ID","task","arm","VP_pct","IC_mean","SWC_mean","n"])
+        w = csv.DictWriter(f, fieldnames=["RUN_ID","task","model","arm","VP_pct","IC_mean","SWC_mean","n"])
         w.writeheader()
-        for (task, arm), lst in sorted(g.items()):
+        for (task, model, arm), lst in sorted(g.items()):
             n = len(lst)
             vp_pct = 100.0 * sum(x["VP"] for x in lst) / max(n,1)
             ic_mean = sum(x["IC"] for x in lst) / max(n,1)
             swc_mean = sum(x["SWC"] for x in lst) / max(n,1)
-            w.writerow({"RUN_ID":RUN_ID,"task":task,"arm":arm,
+            w.writerow({"RUN_ID":RUN_ID,"task":task,"model":model,"arm":arm,
                         "VP_pct":round(vp_pct,1),
                         "IC_mean":round(ic_mean,2),
                         "SWC_mean":round(swc_mean,2),
