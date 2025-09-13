@@ -1,0 +1,9 @@
+{
+  "task": "task04_command",
+  "model": "gemma3:27b",
+  "arm": "improved",
+  "seed": 202,
+  "probes": {
+    "cmd_no_shell": false
+  }
+}

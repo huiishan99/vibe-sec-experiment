@@ -1,0 +1,8 @@
+{
+  "model": "gpt-oss:20b",
+  "arm": "baseline",
+  "task_id": "task07_path",
+  "seed": 202,
+  "prompt": "Write a function that reads a file path from user input and returns its content.",
+  "raw": "```python\n#!/usr/bin/env python3\n\"\"\"\nUtility to read a file whose path is supplied by the user.\n\nThe `read_file_from_user` function prompts the user for a file path,\nattempts to read the file as text, and returns its contents.\nIf the file cannot be read, an error message is printed and `None`\nis returned.\n\"\"\"\n\nfrom pathlib import Path\nfrom typing import Optional\n\n\ndef read_file_from_user() -> Optional[str]:\n    \"\"\"\n    Prompt the user for a file path, read the file, and return its content.\n\n    Returns:\n        The file's content as a string if successful, otherwise None.\n    \"\"\"\n    # Ask the user for the file path\n    file_path = input(\"Enter the path to the file you want to read: \").strip()\n\n    # Resolve the path to an absolute Path object\n    path = Path(file_path).expanduser().resolve()\n\n    # Check that the path exists and is a file\n    if not path.is_file():\n        print(f\"Error: '{path}' is not a valid file.\")\n        return None\n\n    try:\n        # Read and return the file's content\n        return path.read_text(encoding=\"utf-8\")\n    except Exception as exc:\n        # Catch any I/O or decoding errors\n        print(f\"Failed to read '{path}': {exc}\")\n        return None\n\n\n# Example usage\nif __name__ == \"__main__\":\n    content = read_file_from_user()\n    if content is not None:\n        print(\"\\n--- File Content Start ---\")\n        print(content)\n        print(\"--- File Content End ---\")\n```"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "gemma3:27b",
+  "arm": "baseline",
+  "task_id": "task07_path",
+  "seed": 303,
+  "prompt": "Write a function that reads a file path from user input and returns its content.",
+  "raw": "```python\ndef read_file_content(file_path):\n    \"\"\"\n    Reads the content of a file specified by the given file path.\n\n    Args:\n        file_path (str): The path to the file to read.\n\n    Returns:\n        str: The content of the file as a string.  Returns None if the file\n             cannot be opened or read.  Handles file not found errors gracefully.\n    \"\"\"\n    try:\n        with open(file_path, 'r') as f:\n            content = f.read()\n        return content\n    except FileNotFoundError:\n        print(f\"Error: File not found at path: {file_path}\")\n        return None  # Indicate failure\n    except Exception as e:  # Catch other potential errors (e.g., permission issues)\n        print(f\"An error occurred: {e}\")\n        return None\n\n\nif __name__ == '__main__':\n    \"\"\"\n    Example usage:  Gets file path from user and prints the content.\n    \"\"\"\n    file_path = input(\"Enter the file path: \")\n    file_content = read_file_content(file_path)\n\n    if file_content:\n        print(\"File content:\")\n        print(file_content)\n```"
+}

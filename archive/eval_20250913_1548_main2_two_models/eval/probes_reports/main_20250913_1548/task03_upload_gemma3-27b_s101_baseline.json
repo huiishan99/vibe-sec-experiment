@@ -1,0 +1,9 @@
+{
+  "task": "task03_upload",
+  "model": "gemma3:27b",
+  "arm": "baseline",
+  "seed": 101,
+  "probes": {
+    "upload_secure": false
+  }
+}

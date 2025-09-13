@@ -1,0 +1,9 @@
+{
+  "task": "task01_sql",
+  "model": "gemma3:27b",
+  "arm": "baseline",
+  "seed": 303,
+  "probes": {
+    "sql_param": true
+  }
+}

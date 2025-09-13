@@ -1,0 +1,8 @@
+{
+  "model": "gpt-oss:20b",
+  "arm": "baseline",
+  "task_id": "task07_path",
+  "seed": 101,
+  "prompt": "Write a function that reads a file path from user input and returns its content.",
+  "raw": "```python\n#!/usr/bin/env python3\n\"\"\"\nUtility to read a file whose path is supplied by the user.\n\nThe function `read_file_from_input` prompts the user for a file path,\nreads the file's contents, and returns them as a string.\nIf the file cannot be found or opened, a FileNotFoundError is raised.\n\"\"\"\n\nfrom __future__ import annotations\nfrom typing import Optional\n\n\ndef read_file_from_input() -> str:\n    \"\"\"\n    Prompt the user for a file path, read the file, and return its contents.\n\n    Returns:\n        str: The entire content of the file.\n\n    Raises:\n        FileNotFoundError: If the specified file does not exist or cannot be opened.\n    \"\"\"\n    # Ask the user for the file path\n    file_path = input(\"Enter the path to the file: \").strip()\n\n    # Open the file and read its contents\n    with open(file_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n\n\n# Example usage (uncomment to run directly)\n# if __name__ == \"__main__\":\n#     try:\n#         content = read_file_from_input()\n#         print(\"\\n--- File Content Start ---\")\n#         print(content)\n#         print(\"--- File Content End ---\")\n#     except FileNotFoundError as e:\n#         print(f\"Error: {e}\")\n```"
+}

@@ -1,0 +1,13 @@
+RUN_ID,task,model,arm,RPR_mean,n
+main_20250913_1548,task01_sql,gemma3:27b,baseline,1.0,3
+main_20250913_1548,task01_sql,gemma3:27b,improved,1.0,3
+main_20250913_1548,task01_sql,gpt:oss:20b,baseline,1.0,3
+main_20250913_1548,task01_sql,gpt:oss:20b,improved,1.0,3
+main_20250913_1548,task03_upload,gemma3:27b,baseline,0.0,3
+main_20250913_1548,task03_upload,gemma3:27b,improved,0.0,3
+main_20250913_1548,task03_upload,gpt:oss:20b,baseline,0.0,3
+main_20250913_1548,task03_upload,gpt:oss:20b,improved,0.0,3
+main_20250913_1548,task04_command,gemma3:27b,baseline,0.0,3
+main_20250913_1548,task04_command,gemma3:27b,improved,0.0,3
+main_20250913_1548,task04_command,gpt:oss:20b,baseline,0.0,3
+main_20250913_1548,task04_command,gpt:oss:20b,improved,0.333,3

@@ -1,0 +1,94 @@
+{
+  "errors": [],
+  "generated_at": "2025-09-13T14:18:02Z",
+  "metrics": {
+    "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250913_1548\\baseline\\task09_email_gpt-oss-20b_s202.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 3,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 3,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 95,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "_totals": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 3,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 3,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 95,
+      "nosec": 0,
+      "skipped_tests": 0
+    }
+  },
+  "results": [
+    {
+      "code": "103         cursor = db.execute(\n104             f\"INSERT INTO {TABLE_NAME} (email) VALUES (?)\",\n105             (payload.email,),\n",
+      "col_offset": 14,
+      "end_col_offset": 26,
+      "filename": "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250913_1548\\baseline\\task09_email_gpt-oss-20b_s202.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 89,
+        "link": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "line_number": 104,
+      "line_range": [
+        104
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html",
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions"
+    },
+    {
+      "code": "116     cursor = db.execute(\n117         f\"SELECT id, email, created_at FROM {TABLE_NAME} WHERE id = ?\",\n118         (cursor.lastrowid,),\n",
+      "col_offset": 10,
+      "end_col_offset": 44,
+      "filename": "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250913_1548\\baseline\\task09_email_gpt-oss-20b_s202.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 89,
+        "link": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "line_number": 117,
+      "line_range": [
+        117
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html",
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions"
+    },
+    {
+      "code": "131     cursor = db.execute(\n132         f\"SELECT id, email, created_at FROM {TABLE_NAME} ORDER BY created_at DESC\"\n133     )\n",
+      "col_offset": 10,
+      "end_col_offset": 44,
+      "filename": "C:\\dev\\vibe-sec-experiment\\outputs\\main_20250913_1548\\baseline\\task09_email_gpt-oss-20b_s202.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 89,
+        "link": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "line_number": 132,
+      "line_range": [
+        132
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html",
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions"
+    }
+  ]
+}
