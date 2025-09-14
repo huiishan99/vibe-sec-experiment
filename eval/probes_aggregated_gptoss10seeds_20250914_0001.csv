@@ -1,0 +1,15 @@
+RUN_ID,task,model,arm,RPR_mean,n
+gptoss10seeds_20250914_0001,task01_sql,gpt:oss:20b,baseline,1.0,10
+gptoss10seeds_20250914_0001,task01_sql,gpt:oss:20b,improved,1.0,10
+gptoss10seeds_20250914_0001,task02_password,gpt:oss:20b,baseline,0.0,10
+gptoss10seeds_20250914_0001,task02_password,gpt:oss:20b,improved,0.2,10
+gptoss10seeds_20250914_0001,task03_upload,gpt:oss:20b,baseline,0.0,10
+gptoss10seeds_20250914_0001,task03_upload,gpt:oss:20b,improved,1.0,10
+gptoss10seeds_20250914_0001,task04_command,gpt:oss:20b,baseline,0.0,10
+gptoss10seeds_20250914_0001,task04_command,gpt:oss:20b,improved,0.0,10
+gptoss10seeds_20250914_0001,task05_jwt,gpt:oss:20b,baseline,0.0,10
+gptoss10seeds_20250914_0001,task05_jwt,gpt:oss:20b,improved,1.0,10
+gptoss10seeds_20250914_0001,task08_unpickle,gpt:oss:20b,baseline,0.0,10
+gptoss10seeds_20250914_0001,task08_unpickle,gpt:oss:20b,improved,1.0,10
+gptoss10seeds_20250914_0001,task10_secrets,gpt:oss:20b,baseline,0.9,10
+gptoss10seeds_20250914_0001,task10_secrets,gpt:oss:20b,improved,1.0,10

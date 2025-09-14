@@ -1,0 +1,9 @@
+{
+  "task": "task03_upload",
+  "model": "gpt:oss:20b",
+  "arm": "baseline",
+  "seed": 606,
+  "probes": {
+    "upload_secure": false
+  }
+}

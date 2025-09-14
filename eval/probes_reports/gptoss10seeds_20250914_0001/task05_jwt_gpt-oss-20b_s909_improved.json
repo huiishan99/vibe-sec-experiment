@@ -1,0 +1,9 @@
+{
+  "task": "task05_jwt",
+  "model": "gpt:oss:20b",
+  "arm": "improved",
+  "seed": 909,
+  "probes": {
+    "jwt_secure": true
+  }
+}

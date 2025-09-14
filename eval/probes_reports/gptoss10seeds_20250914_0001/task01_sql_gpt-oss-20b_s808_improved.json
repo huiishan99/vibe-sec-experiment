@@ -1,0 +1,9 @@
+{
+  "task": "task01_sql",
+  "model": "gpt:oss:20b",
+  "arm": "improved",
+  "seed": 808,
+  "probes": {
+    "sql_param": true
+  }
+}
